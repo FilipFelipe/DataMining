@@ -17,7 +17,7 @@ def tratar_arquivo():
 def main():
     # Faz a leitura do arquivo
     input_file = '0-Datasets/StoneFlakes_Trabalhado.dat'
-    df = pd.read_csv(input_file, names = ['ID','LBI','RTI','WDI','FLA','PSF','FSF','ZDF1','PROZD'],usecols = ['LBI','FLA','PSF','FSF','ZDF1'],na_values='?') 
+    df = pd.read_csv(input_file, names = ['ID','LBI','RTI','WDI','FLA','PSF','FSF','ZDF1','PROZD'],usecols = ['LBI','WDI','FLA','PSF','FSF','ZDF1','PROZD'],na_values='?') 
     # Imprime as 15 primeiras linhas do arquivo
     print("PRIMEIRAS 15 LINHAS\n")
     print(df.head(15))
@@ -42,7 +42,9 @@ def main():
     df['FSF'].fillna(mode_FSF, inplace=True)    
     mode_ZDF1 = df['ZDF1'].mode()[0]
     df['ZDF1'].fillna(mode_ZDF1, inplace=True)      
-    df.to_csv('2-Output/dados.csv')
+    
+    # Gera um arquivo csv com os todos os dados preenchidos pelo algoritmo
+    df.to_csv('2-Output/1-dados_limpos.csv', index=False)
 
 if __name__ == "__main__":
     tratar_arquivo()
