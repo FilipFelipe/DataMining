@@ -22,10 +22,13 @@ Aluno: Filip Junio Felipe
 
 ## Conteúdo do curso 
 
-| Nome do Dataset  | Link do Dataset                  |
+| Nome do Dataset  | Link do Dataset                  | 
 | ------------- | ------------------------------ |
-| StoneFlakes      | [DataSet](https://archive.ics.uci.edu/ml/datasets/StoneFlakes)    | 
+| Autistic Spectrum Disorder Screening Data for Children Data Set      | [DataSet](https://archive.ics.uci.edu/ml/datasets/Autistic+Spectrum+Disorder+Screening+Data+for+Children++)    | 
 
 * - [x] [Pré-Processamento](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/1-Limpeza.py)
+* - [x] [Informações dos dados](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/1.1-Info_Dados.py)
+* - [x] [Gráficos](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/1.2-Graficos.py)
 * - [x] [Normalização](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/2-Normalizacao.py)
 * - [x] [Redução](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/3-Reducao.py)
+

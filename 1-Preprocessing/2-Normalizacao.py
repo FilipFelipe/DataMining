@@ -8,7 +8,7 @@ def main():
     input_file = '2-Output/1-dados_limpos.csv'
     df = pd.read_csv(input_file)
     columns = list(df.columns)
-    target = 'ZDF1'
+    target = 'Class/ASD'
     index = -1
     for i, column in enumerate(columns):
         if column == target:
@@ -21,13 +21,13 @@ def main():
     # Separating out the target
     y = df.loc[:, [target]].values
 
-    # Mix-Max normalization
-    x_minmax = MinMaxScaler().fit_transform(x)
-    normalized2Df = pd.DataFrame(data=x_minmax, columns=columns)
-    normaizeld2Df = pd.concat([normalized2Df, df[[target]]], axis=1)
-    ShowInformationDataFrame(normalized2Df, "Dataframe Min-Max Normalized")
+    # Z-score normalization
+    x_zcore = StandardScaler().fit_transform(x)
+    normalized1Df = pd.DataFrame(data=x_zcore, columns=columns)
+    normalized1Df = pd.concat([normalized1Df, df[[target]]], axis=1)
+    ShowInformationDataFrame(normalized1Df, "Dataframe Z-Score Normalized")
     
-    normalized2Df.to_csv('2-Output/2-dados_normalizados.csv', index=False)
+    normalized1Df.to_csv('2-Output/2-dados_normalizados.csv', index=False)
 
 def ShowInformationDataFrame(df, message=""):
     print(message+"\n")

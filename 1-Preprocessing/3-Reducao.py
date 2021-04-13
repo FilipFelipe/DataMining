@@ -10,7 +10,7 @@ def main():
     input_file = '2-Output/2-dados_normalizados.csv'
     df = pd.read_csv(input_file)
     columns = list(df.columns)
-    target = 'ZDF1'
+    target = 'Class/ASD'
     index = -1
     for i, column in enumerate(columns):
         if column == target:

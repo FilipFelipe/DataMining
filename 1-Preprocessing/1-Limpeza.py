@@ -3,24 +3,41 @@ import pandas as pd
 import numpy as np
 
 def tratar_arquivo():
-    meuArquivo = open('0-Datasets/StoneFlakes.dat')
-    arquivo = open("0-Datasets/StoneFlakes_Trabalhado.dat", "w")
+    meuArquivo = open('0-Datasets/Autism-Child-Data.arff')
+    arquivo = open("0-Datasets/Autism-Child-Data_Trabalhado.arff", "w")
     dados = meuArquivo.readlines()
     dado_tratado = list()
-    dados.remove('ID    LBI   RTI  WDI FLA  PSF  FSF ZDF1 PROZD\n')
     for dado_linha in dados:
-        dado_linha = re.sub("\s+", ",", dado_linha,1)
-        dado_linha = re.sub("\s+", "", dado_linha)
-        dado_tratado.append(dado_linha+"\n")
+            if dado_linha[0] != "@":
+                # NO = 0 | YES = 1 
+                dado_linha = re.sub("no,", "0,", dado_linha)
+                dado_linha = re.sub("yes,", "1,", dado_linha)
+                dado_linha = re.sub(",NO", ",0", dado_linha)
+                dado_linha = re.sub(",YES", ",1", dado_linha)
+                # f = 0 | m = 1
+                dado_linha = re.sub(",f", ",0", dado_linha)
+                dado_linha = re.sub(",m", ",1", dado_linha)
+                #relation {Parent - 0 | Self - 1 | Relative - 2 | 'Health care professional' - 3 | self - 4}
+                dado_linha = re.sub("Parent,", "0,", dado_linha)
+                dado_linha = re.sub("Self,", "1,", dado_linha)
+                dado_linha = re.sub("self,", "1,", dado_linha)
+                dado_linha = re.sub("Relative,", "2,", dado_linha)
+                dado_linha = re.sub("'Health care professional',", "3,", dado_linha)
+                dado_linha = re.sub("\s+", "", dado_linha)
+                dado_tratado.append(dado_linha+"\n")
+            else:
+                print("Pulando linha")
+
     arquivo.writelines(dado_tratado)
 
 def main():
     # Faz a leitura do arquivo
-    input_file = '0-Datasets/StoneFlakes_Trabalhado.dat'
-    df = pd.read_csv(input_file, names = ['ID','LBI','RTI','WDI','FLA','PSF','FSF','ZDF1','PROZD'],usecols = ['LBI','WDI','FLA','PSF','FSF','ZDF1','PROZD'],na_values='?') 
+    input_file = '0-Datasets/Autism-Child-Data_Trabalhado.arff'
+    df = pd.read_csv(input_file, names = ['A1_Score','A2_Score','A3_Score','A4_Score','A5_Score','A6_Score','A7_Score','A8_Score','A9_Score','A10_Score','age numeric','gender','ethnicity','jundice','austim','contry_of_res','used_app_before','result','age_desc','relation','Class/ASD'],usecols = ['age numeric','gender','austim','used_app_before','result','relation','Class/ASD'],na_values='?') 
     # Imprime as 15 primeiras linhas do arquivo
+    
     print("PRIMEIRAS 15 LINHAS\n")
-    print(df.head(15))
+    print(df.head(30))
     print("\n")
 
     # Imprime informações sobre dos dados
@@ -32,19 +49,17 @@ def main():
     print("DESCRIÇÃO DOS DADOS\n")
     print(df.describe())
     print("\n")
-    mean_LBI = df['LBI'].mean()
-    df['LBI'].fillna(mean_LBI, inplace=True)  
-    mean_FLA = df['FLA'].mean()
-    df['FLA'].fillna(mean_FLA, inplace=True)  
-    mode_PSF = df['PSF'].mode()[0]
-    df['PSF'].fillna(mode_PSF, inplace=True)    
-    mode_FSF = df['FSF'].mode()[0]
-    df['FSF'].fillna(mode_FSF, inplace=True)    
-    mode_ZDF1 = df['ZDF1'].mode()[0]
-    df['ZDF1'].fillna(mode_ZDF1, inplace=True)      
-    
+
+    mean_Age = df['age numeric'].mean()
+    df['age numeric'].fillna(round(mean_Age, 0), inplace=True)  
+    mode_Relation = df['relation'].mode()[0]
+    df['relation'].fillna(round(mode_Relation, 0), inplace=True)  
+    # Imprime uma analise descritiva sobre dos dados
+    print(df.info())
+    print("\n")
     # Gera um arquivo csv com os todos os dados preenchidos pelo algoritmo
     df.to_csv('2-Output/1-dados_limpos.csv', index=False)
+    print("\n")
 
 if __name__ == "__main__":
     tratar_arquivo()
