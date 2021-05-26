@@ -5,7 +5,7 @@ import numpy as np
 
 def main():
     # Faz a leitura do arquivo
-    input_file = '2-Output/1-dados_limpos.csv'
+    input_file = '0.1-Output/1-dados_limpos.csv'
     df = pd.read_csv(input_file) 
     print("PRIMEIRAS 15 LINHAS\n")
     print(df.head(15))

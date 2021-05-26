@@ -58,7 +58,7 @@ def main():
     print(df.info())
     print("\n")
     # Gera um arquivo csv com os todos os dados preenchidos pelo algoritmo
-    df.to_csv('2-Output/1-dados_limpos.csv', index=False)
+    df.to_csv('0.1-Output/1-dados_limpos.csv', index=False)
     print("\n")
 
 if __name__ == "__main__":

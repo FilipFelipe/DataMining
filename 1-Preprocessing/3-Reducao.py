@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 def main():
     # Faz a leitura do arquivo
-    input_file = '2-Output/2-dados_normalizados.csv'
+    input_file = '0.1-Output/2-dados_normalizados.csv'
     df = pd.read_csv(input_file)
     columns = list(df.columns)
     target = 'Class/ASD'
@@ -32,7 +32,7 @@ def main():
 
     principalDf = pd.DataFrame(data=principalComponents[:, 0:2],columns=['principal component 1','principal component 2'])
     finalDf = pd.concat([principalDf, df[[target]]], axis=1)
-    finalDf.to_csv('2-Output/3-dados_reduzidos.csv', index=False)
+    finalDf.to_csv('0.1-Output/3-dados_reduzidos.csv', index=False)
     ShowInformationDataFrame(finalDf, "Dataframe PCA")
     VisualizePcaProjection(finalDf, target)
 

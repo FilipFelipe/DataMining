@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    input_file = '2-Output/1-dados_limpos.csv'  # Importação dos Dados
+    input_file = '0.1-Output/1-dados_limpos.csv'  # Importação dos Dados
     df = pd.read_csv(input_file, usecols=[
                      'age numeric', 'result', 'gender', 'result', 'Class/ASD'])
     

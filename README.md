@@ -31,4 +31,5 @@ Aluno: Filip Junio Felipe
 * - [x] [Gráficos](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/1.2-Graficos.py)
 * - [x] [Normalização](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/2-Normalizacao.py)
 * - [x] [Redução](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/3-Reducao.py)
-
+* - [x] [Kmeans](https://github.com/FilipFelipe/DataMining/blob/main/2-Clustering/Kmeans.py)
+* - [x] [KNN](https://github.com/FilipFelipe/DataMining/blob/main/3-Classification/KNN_Autism.py)

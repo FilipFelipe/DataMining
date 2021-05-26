@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 def main():
     # Faz a leitura do arquivo
-    input_file = '2-Output/1-dados_limpos.csv'
+    input_file = '0.1-Output/1-dados_limpos.csv'
     df = pd.read_csv(input_file)
     columns = list(df.columns)
     target = 'Class/ASD'
@@ -27,7 +27,7 @@ def main():
     normalized1Df = pd.concat([normalized1Df, df[[target]]], axis=1)
     ShowInformationDataFrame(normalized1Df, "Dataframe Z-Score Normalized")
     
-    normalized1Df.to_csv('2-Output/2-dados_normalizados.csv', index=False)
+    normalized1Df.to_csv('0.1-Output/2-dados_normalizados.csv', index=False)
 
 def ShowInformationDataFrame(df, message=""):
     print(message+"\n")
