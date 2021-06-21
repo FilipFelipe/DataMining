@@ -35,11 +35,11 @@ def main():
 
     #Gráficos de classificacao
     somas_classificacao = df['Class/ASD'].value_counts(sort=True)
-    somas_classificacao.plot.pie(autopct='%1.1f%%',
+    somas_classificacao.plot.pie(labels=['Grau de Autismo', 'Sem Grau de Autismo'],autopct='%1.1f%%',
                           startangle=90, title='Classificação dos participantes',ylabel='')
     plt.show()
 
-    df.to_csv('2-Output/1-dados_graficos.csv', index=False)
+    df.to_csv('0.1-Output/1-dados_graficos.csv', index=False)
 
 if __name__ == "__main__":
     main()

@@ -65,39 +65,41 @@ def plot_samples(projected, labels, title):
 
  
 def main():
+
+    # Dados do dataset
     input_file = '0.1-Output/1-dados_limpos.csv'
+    #Número de grupos
+    k = 2
     df = pd.read_csv(input_file)
     columns = list(df.columns)
     target = 'Class/ASD'
-    k = 2
+
+    # Separating out the columns
     x = df.loc[:, columns].values
+    # Separating out the target
     y = df.loc[:, [target]].values
 
-    #Transform the data using PCA
+    # PCA projection
     pca = PCA(2)
     projected = pca.fit_transform(x)
+    print("Explained variance per component:")
     print(pca.explained_variance_ratio_)
     print(df.shape)
-    print(projected.shape)    
-    labels = KMeans_scratch(projected,6,5)
-    plot_samples(projected, labels, 'Original Labels')
- 
-    #Applying our kmeans function from scratch
-    
-    
-    #Visualize the results 
+    print(projected.shape)
+    print("\n\n")
+    # Applying our kmeans function from scratch
+    labels = KMeans_scratch(projected, k, 100)
+    # Visualize the results
     plot_samples(projected, labels, 'Clusters Labels KMeans from scratch')
-
-    #Applying sklearn kemans function
-    kmeans = KMeans(n_clusters=6).fit(projected)
+    # Applying sklearn kemans function
+    kmeans = KMeans(n_clusters=k, random_state=1).fit(projected)
     print(kmeans.inertia_)
-    centers = kmeans.cluster_centers_
-    score = silhouette_score(projected, kmeans.labels_)    
-    print("For n_clusters = {}, silhouette score is {})".format(10, score))
-
-    #Visualize the results sklearn
-    plot_samples(projected, kmeans.labels_, 'Clusters Labels KMeans from sklearn')
-
+    silhouetteScore = silhouette_score(projected, kmeans.labels_)
+    print("For n_clusters = {}, silhouette score is {})".format(
+        k, silhouetteScore))
+    # Visualize the results sklearn
+    plot_samples(projected, kmeans.labels_,
+                 'Clusters Labels KMeans from sklearn')
     plt.show()
  
 

@@ -103,9 +103,9 @@ def main():
     y = df.target
     print("Total samples: {}".format(X.shape[0]))
 
-    # Split the data - 75% train, 25% test
+    # Split the data - 70% train, 30% test
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.25, random_state=1)
+        X, y, test_size=0.3, random_state=1)
     print("Total train samples: {}".format(X_train.shape[0]))
     print("Total test  samples: {}".format(X_test.shape[0]))
 
