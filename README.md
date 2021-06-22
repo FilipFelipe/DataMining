@@ -33,3 +33,4 @@ Aluno: Filip Junio Felipe
 * - [x] [Redução](https://github.com/FilipFelipe/DataMining/blob/main/1-Preprocessing/3-Reducao.py)
 * - [x] [Kmeans](https://github.com/FilipFelipe/DataMining/blob/main/2-Clustering/Kmeans.py)
 * - [x] [KNN](https://github.com/FilipFelipe/DataMining/blob/main/3-Classification/KNN_Autism.py)
+* - [x] [SVM](https://github.com/FilipFelipe/DataMining/blob/main/3-Classification/SVM_Autism.py)
