@@ -9,6 +9,7 @@ from sklearn.metrics import silhouette_score
 from sklearn.metrics import silhouette_samples
 import matplotlib.pyplot as plt
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 
 #Defining our kmeans function from scratch
 def KMeans_scratch(x,k, no_of_iterations):
@@ -63,22 +64,19 @@ def plot_samples(projected, labels, title):
     plt.legend()
     plt.title(title)
 
- 
 def main():
 
     # Dados do dataset
-    input_file = '0.1-Output/1-dados_limpos.csv'
+    input_file = '0.1-Output/2-dados_normalizados.csv'
     #Número de grupos
-    k = 2
+    k = 4
     df = pd.read_csv(input_file)
     columns = list(df.columns)
     target = 'Class/ASD'
 
-    # Separating out the columns
     x = df.loc[:, columns].values
-    # Separating out the target
     y = df.loc[:, [target]].values
-
+    
     # PCA projection
     pca = PCA(2)
     projected = pca.fit_transform(x)
